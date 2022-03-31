@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 
+
 class Author(models.Model):
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
@@ -51,6 +52,9 @@ class Post(models.Model):
 
     def preview(self):
         return self.text[0:123] + '...'
+
+    def __str__(self):
+        return f'{self.title.title()}'
 
 
 class PostCategory(models.Model):
