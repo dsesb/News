@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 
-
 class Author(models.Model):
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
@@ -19,7 +18,6 @@ class Author(models.Model):
 
         self.ratingAuthor = pRat * 3 + cRat
         self.save()
-
 
 
 class Category(models.Model):
@@ -55,6 +53,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title.title()}'
+
+    def get_absolute_url(self):
+        return f'/news/{self.id}'
 
 
 class PostCategory(models.Model):
